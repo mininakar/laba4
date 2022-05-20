@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
+#include "callbacks.h"
 #include "pipeline.h"
 #include "camera.h"
 #include "texture.h"
@@ -30,10 +31,10 @@ public:
 
         m_spotLight.AmbientIntensity = 0.0f;
         m_spotLight.DiffuseIntensity = 0.9f;
-        m_spotLight.Color = Vector3f(1.0f, 1.0f, 1.0f);
+        m_spotLight.Color = glm::vec3(1.0f, 1.0f, 1.0f);
         m_spotLight.Attenuation.Linear = 0.01f;
-        m_spotLight.Position = Vector3f(-20.0, 20.0, 5.0f);
-        m_spotLight.Direction = Vector3f(1.0f, -1.0f, 0.0f);
+        m_spotLight.Position = glm::vec3(-20.0, 20.0, 5.0f);
+        m_spotLight.Direction = glm::vec3(1.0f, -1.0f, 0.0f);
         m_spotLight.Cutoff = 20.0f;
     }
 
@@ -107,7 +108,7 @@ public:
         p.Scale(0.2f, 0.2f, 0.2f);
         p.Rotate(0.0f, m_scale, 0.0f);
         p.WorldPos(0.0f, 0.0f, 5.0f);
-        p.SetCamera(m_spotLight.Position, m_spotLight.Direction, Vector3f(0.0f, 1.0f, 0.0f));
+        p.SetCamera(m_spotLight.Position, m_spotLight.Direction, glm::vec3(0.0f, 1.0f, 0.0f));
         p.SetPerspectiveProj(60.0f, WINDOW_WIDTH, WINDOW_HEIGHT, 1.0f, 50.0f);
         m_pShadowMapTech->SetWVP(p.GetWVPTrans());
         m_pMesh->Render();
